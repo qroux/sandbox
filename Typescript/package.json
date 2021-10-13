@@ -1,0 +1,12 @@
+{
+  "name": "typescript-sandbox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "compile": "npx tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}
