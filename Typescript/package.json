@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "alpinejs": "^3.4.2"
   }
 }

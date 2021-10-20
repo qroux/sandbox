@@ -2,7 +2,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "ES3",
-    "alwaysStrict": true
+    "alwaysStrict": true,
+    "declaration": true
   },
   "files": ["src/app.ts"]
 }

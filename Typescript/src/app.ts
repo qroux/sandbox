@@ -1,45 +1,64 @@
-// DOCUMENTATION
-// https://www.typescriptlang.org/docs/handbook/utility-types.html
+import Alpine from 'alpinejs';
 
-// OPTIONAL GENERICS
+Alpine.data('myComponent', function (initial = 0) {
+  return {
+    compteur: initial,
+    increment() {
+      this.compteur += 1;
+    },
+    decrement() {
+      this.compteur -= 1;
+      if (this.compteur < 0) {
+        (this.$el as HTMLSpanElement).style.display = 'none';
+      }
+    },
+  };
+});
 
-class Cat {}
-class Fish {}
+Alpine.start();
 
-type AnimalOptions = { swim: any } | { jump: any };
-type AnimalOutput<T> = T extends { swim: any } ? Fish : Cat;
+// // DOCUMENTATION
+// // https://www.typescriptlang.org/docs/handbook/utility-types.html
 
-const generator = <T extends AnimalOptions>(options: T): AnimalOutput<T> => {
-  if ('swim' in options) {
-    return new Fish();
-  } else {
-    return new Cat();
-  }
-};
+// // OPTIONAL GENERICS
 
-const a = generator({ jump: () => console.log('Fish') });
+// class Cat {}
+// class Fish {}
 
-// GENERIC MAPING FROM CLASS
+// type AnimalOptions = { swim: any } | { jump: any };
+// type AnimalOutput<T> = T extends { swim: any } ? Fish : Cat;
 
-class UserOptions {
-  env = 'dev';
+// const generator = <T extends AnimalOptions>(options: T): AnimalOutput<T> => {
+//   if ('swim' in options) {
+//     return new Fish();
+//   } else {
+//     return new Cat();
+//   }
+// };
 
-  darkMode() {
-    return true;
-  }
-  privateMode() {
-    return true;
-  }
-  nsfwMode() {
-    return true;
-  }
-}
+// const a = generator({ jump: () => console.log('Fish') });
 
-type OptionsFlag<T> = {
-  +readonly // +accessor [key in keyof T as `remapping${string & key}`]+optional?: T[key] extends () => boolean ? boolean : never;
-  [key in keyof T as `get${string & key}`]+?: T[key] extends () => boolean
-    ? boolean
-    : never;
-};
+// // GENERIC MAPING FROM CLASS
 
-type A = OptionsFlag<UserOptions>;
+// class UserOptions {
+//   env = 'dev';
+
+//   darkMode() {
+//     return true;
+//   }
+//   privateMode() {
+//     return true;
+//   }
+//   nsfwMode() {
+//     return true;
+//   }
+// }
+
+// type OptionsFlag<T> = {
+//   +readonly // +accessor [key in keyof T as `remapping${string & key}`]+optional?: T[key] extends () => boolean ? boolean : never;
+//   [key in keyof T as `get${string & key}`]+?: T[key] extends () => boolean
+//     ? boolean
+//     : never;
+// };
+
+// type A = OptionsFlag<UserOptions>;
